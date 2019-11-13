@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!--环境-->
+<!--这些属性都是可外部配置且可动态替换的，既可以在典型的 Java 属性文件中配置，亦可通过 properties 元素的子元素来传递。-->
+    <properties resource="db.properties"></properties>
+<!--settings是 MyBatis 中极为重要的调整设置,它们会改变 MyBatis 的运行时行为,具体见文档-->
+<!--类型别名是为 Java 类型设置一个短的名字。 它只和 XML 配置有关，存在的意义仅在于用来减少类完全限定名的冗余。-->
+    <typeAliases>
+        <typeAlias type="pojo.Employee" alias="Emp"/>
+    </typeAliases>
+    <typeHandlers>
+        <typeHandler handler="MyTypeHandler"/>
+    </typeHandlers>
+    <environments default="a">
+    <!--第一环境配置-->
+        <environment id="a">
+    <!--事务管理器-->
+            <transactionManager type="JDBC"/>
+    <!--数据源-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <!-- 如果属性 'username' 没有被配置，'username' 属性的值将为 'root' -->
+                <property name="username" value="${username:root}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="EmployeeDaoQuery.xml" />
+    </mappers>
+</configuration>
