@@ -11,9 +11,9 @@
     <typeAliases>
         <typeAlias type="pojo.Employee" alias="Emp"/>
     </typeAliases>
-    <typeHandlers>
-        <typeHandler handler="MyTypeHandler"/>
-    </typeHandlers>
+<!--    <typeHandlers>-->
+<!--        <typeHandler handler="MyTypeHandler"/>-->
+<!--    </typeHandlers>-->
     <environments default="a">
     <!--第一环境配置-->
         <environment id="a">
@@ -31,5 +31,8 @@
     </environments>
     <mappers>
         <mapper resource="EmployeeDaoQuery.xml" />
+        <mapper resource="EmployeeDaoDelete.xml" />
+        <mapper resource="EmployeeDaoUpdate.xml" />
+        <mapper resource="EmployeeDaoInsert.xml" />
     </mappers>
 </configuration>
