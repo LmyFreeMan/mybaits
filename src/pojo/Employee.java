@@ -1,20 +1,33 @@
 package pojo;
 public class Employee {
     private int id;
-    private String last_name;
-    public int getId() {
-        return id;
+
+    public Department getDepartment() {
+        return department;
     }
+
     @Override
     public String toString() {
         return "Employee{" +
                 "id=" + id +
                 ", last_name='" + last_name + '\'' +
+                ", department=" + department +
                 ", email='" + email + '\'' +
                 ", gender='" + gender + '\'' +
                 ", did=" + did +
                 '}';
     }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    private String last_name;
+    private  Department department;
+    public int getId() {
+        return id;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
