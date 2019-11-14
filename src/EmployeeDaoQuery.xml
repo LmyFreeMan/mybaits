@@ -5,7 +5,27 @@
 <!--必须和它所描述的全类名保持一致-->
 <mapper namespace="dao.EmployeeDao">
     <!--必须和它所描述的接口名称保持一致-->
+    <!--单一传参-->
 <select id="selectEmpById"  resultType="pojo.Employee">
-    select * from employee where id=1
+    select * from employee where id=#{id}
 </select>
+    <!--多个参数传递-->
+<select id="selectEmpByIdAndLastName" resultType="pojo.Employee">
+    select * from employee where id=#{param1} and last_name=#{param2}
+</select>
+
+<select id="selectAllEmp" resultType="pojo.Employee" >
+    select * from  test.employee
+</select>
+
+<select id="selectAllEmp1" resultType="pojo.Employee">
+    select  * from test.employee
+</select>
+    <!--联表查询-->
+<resultMap id="resultMap" type="pojo.Employee">
+    <association property="department" javaType="pojo.Department">
+        <id column="id" property="id"></id>
+        <result column="did" property="department.id"></result>
+    </association>
+</resultMap>
 </mapper>
