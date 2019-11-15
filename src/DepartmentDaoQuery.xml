@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--必须和它所描述的全类名保持一致-->
+<mapper namespace="dao.DepartmentDao">
+    <!--必须和它所描述的接口名称保持一致-->
+<select id="selectDeptById" resultType="pojo.Department">
+select  * from department where id=#{id}
+</select>
+<select id="selectEmpByDid" resultType="pojo.Employee">
+    select * from department where id=#{id}
+</select>
+</mapper>        

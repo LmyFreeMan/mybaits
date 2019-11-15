@@ -21,11 +21,45 @@
 <select id="selectAllEmp1" resultType="pojo.Employee">
     select  * from test.employee
 </select>
-    <!--联表查询-->
-<resultMap id="resultMap" type="pojo.Employee">
-    <association property="department" javaType="pojo.Department">
-        <id column="id" property="id"></id>
-        <result column="did" property="department.id"></result>
-    </association>
+<!--    &lt;!&ndash;联表查询&ndash;&gt;-->
+<!--<resultMap id="resultMap" type="pojo.Employee">-->
+<!--    <id property="id" column="id"></id>-->
+<!--    <result property="last_name" column="last_name"></result>-->
+<!--    <result property="email" column="email"></result>-->
+<!--    <result property="gender" column="gender"></result>-->
+<!--    <result property="did" column="did"></result>-->
+<!--    <association property="department" javaType="pojo.Department">-->
+<!--        <id column="id" property="id"></id>-->
+<!--        <result column="name" property="name"></result>-->
+<!--    </association>-->
+<!--</resultMap>-->
+<!--<select id="selectEmpAndDeptById" resultMap="resultMap">-->
+<!--    select * from department,employee where employee.id=#{id} and employee.did=department.id-->
+<!--</select>-->
+<!--    先查询员工,查询员工对应的did传递给另一个sql语句-->
+<resultMap id="result1" type="pojo.Employee" autoMapping="true">
+    <association property="department" javaType="pojo.Department" select="dao.DepartmentDao.selectDeptById" column="did"></association>
 </resultMap>
+<select id="selectEmpAndDeptById" resultMap="result1">
+select * from employee where id=#{id}
+</select>
+<!--&lt;!&ndash;    测试动态sql的if&ndash;&gt;-->
+<!--<select id="selectEmp"  resultType="pojo.Employee">-->
+<!--    select * from employee-->
+<!--    <where>-->
+<!--    <if test="id!=null and id!=0">-->
+<!--        id=#{id}-->
+<!--    </if>-->
+<!--    <if test="last_name!=null">-->
+<!--        and last_name=#{last_name}-->
+<!--    </if>-->
+<!--    </where>-->
+<!--</select>-->
+<select id="selectEmpsByIn" resultType="pojo.Employee">
+    select * from employee where id in
+    <foreach item="item" index="index" collection="list"
+             open="(" separator="," close=")">
+        #{item}
+    </foreach>
+</select>
 </mapper>
