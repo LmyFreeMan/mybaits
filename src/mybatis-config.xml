@@ -34,5 +34,6 @@
         <mapper resource="EmployeeDaoDelete.xml" />
         <mapper resource="EmployeeDaoUpdate.xml" />
         <mapper resource="EmployeeDaoInsert.xml" />
+        <mapper resource="DepartmentDaoQuery.xml" />
     </mappers>
 </configuration>
