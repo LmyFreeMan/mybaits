@@ -6,9 +6,9 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 public class Main {
     public static void main(String[] args) throws IOException {
         // 指定全局配置文件
@@ -21,10 +21,23 @@ public class Main {
         SqlSession session=sqlSessionFactory.openSession();
         // 通过会话对象来构建接口的实现类对象
         EmployeeDao dao=session.getMapper(EmployeeDao.class);
-         //执行查询操作
-        Employee employee=dao.selectEmpById(1);
+       //执行查询操作
+       // Employee employee=dao.selectEmpAndDeptById(1);
+//        Employee employee=dao.selectEmpById(1);
+        //执行连表查询操作
 //        Employee employee=dao.selectEmpByIdAndLastName(1,"wang");
-        System.out.println(employee);
+        //测试动态sql(if)
+//        Employee emp=new Employee();
+//        emp.setLast_name("wang");
+//        Employee employee=dao.selectEmp(emp);
+//        System.out.println(employee);
+//        //测试动态sql（foreach）
+//        List<Integer>list=new ArrayList<Integer>();
+//        list.add(1);
+//        list.add(2);
+//        list.add(3);
+//        List<Employee> employees=dao.selectEmpsByIn(list);
+//        System.out.println(employees);
 //            //返回结果集测试list
 //        List<Employee> list=dao.selectAllEmp();
 //        for (Employee employee:list) {
