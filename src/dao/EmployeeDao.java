@@ -16,4 +16,5 @@ public interface EmployeeDao {
     public Employee selectEmpAndDeptById(int id);
     public Employee selectEmp(Employee employee);
     public List<Employee> selectEmpsByIn(List<Integer> list);
+    public List<Employee> selectPage(int start,int end);
 }
