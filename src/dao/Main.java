@@ -1,9 +1,10 @@
 package dao;
-import pojo.Employee;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import pojo.Employee;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -20,10 +21,13 @@ public class Main {
         // 获取sqlSession
         SqlSession session=sqlSessionFactory.openSession();
         // 通过会话对象来构建接口的实现类对象
-        EmployeeDao dao=session.getMapper(EmployeeDao.class);
-       //执行查询操作
-       // Employee employee=dao.selectEmpAndDeptById(1);
-//        Employee employee=dao.selectEmpById(1);
+        EmployeeDao dao=session.getMapper(dao.EmployeeDao.class);
+        //执行分页
+        List<Employee> list= (List<Employee>) dao.selectPage(1,5);
+        // 执行查询操作
+      //  Employee employee=dao.selectEmpAndDeptById(1);
+       // Employee employee=dao.selectEmpById(1);
+        System.out.println(list);
         //执行连表查询操作
 //        Employee employee=dao.selectEmpByIdAndLastName(1,"wang");
         //测试动态sql(if)
