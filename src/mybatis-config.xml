@@ -14,8 +14,12 @@
 <!--    <typeHandlers>-->
 <!--        <typeHandler handler="MyTypeHandler"/>-->
 <!--    </typeHandlers>-->
+    <plugins>
+        <plugin interceptor="interceptor.InterceptorExecutor"></plugin>
+<!--        <plugin interceptor="interceptor.InterceptorStatement"></plugin>-->
+    </plugins>
     <environments default="a">
-    <!--第一环境配置-->
+    <!--第 一环境配置-->
         <environment id="a">
     <!--事务管理器-->
             <transactionManager type="JDBC"/>
@@ -29,11 +33,12 @@
             </dataSource>
         </environment>
     </environments>
+
     <mappers>
-        <mapper resource="EmployeeDaoQuery.xml" />
-        <mapper resource="EmployeeDaoDelete.xml" />
-        <mapper resource="EmployeeDaoUpdate.xml" />
-        <mapper resource="EmployeeDaoInsert.xml" />
-        <mapper resource="DepartmentDaoQuery.xml" />
+        <mapper resource="mapper/EmployeeDaoQuery.xml" />
+        <mapper resource="mapper/EmployeeDaoDelete.xml" />
+        <mapper resource="mapper/EmployeeDaoUpdate.xml" />
+        <mapper resource="mapper/EmployeeDaoInsert.xml" />
+        <mapper resource="mapper/DepartmentDaoQuery.xml" />
     </mappers>
 </configuration>
